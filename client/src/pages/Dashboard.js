@@ -50,7 +50,7 @@ const Dashboard = (props) => {
     }
 
     setXP(xp || userData?.me?.xp);
-    setLevel(level === 1 ? getLevel(xp) : level);
+    setLevel(getLevel(xp));
     setCoins(coins || userData?.me?.coins);
     setProgress(xp - xpForEachLevel[getLevel(xp)]);
     setNextLevelXP(xpForEachLevel[getLevel(xp) + 1]);
@@ -60,6 +60,7 @@ const Dashboard = (props) => {
     <div className="container">
       <div style={{display: 'flex'}}>
         Coins: {coins}
+        Level: {level}
         <ProgressBar width={'80vw'} completed={`${progress}`} maxCompleted={nextLevelXP} /> {progress}/{nextLevelXP}
       </div>
       <Habits
