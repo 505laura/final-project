@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-// @ts-check
 const assert = require('assert');
 const {User, Task, Reward} = require('../models');
 
@@ -95,10 +94,10 @@ const resolvers = {
             const cleanArgs = removeUndefinedValues({email, username, password});
             return User.findByIdAndUpdate(user._id, cleanArgs, {new: true}).exec();
         },
-        addTask: async(_p, {title, description, coins, xp}, {user}) => {
+        addTask: async(_p, {title, description, coins, xp, daily, negative}, {user}) => {
             if(!user) { throw new Error('Not logged in'); }
 
-            return Task.create({title, description, creator: user.username, coins, xp});
+            return Task.create({title, description, creator: user.username, coins, xp, daily, negative});
         },
         addReward: async(_p, {title, description, cost}, {user}) => {
             if(!user) { throw new Error('Not logged in'); }
@@ -114,13 +113,37 @@ const resolvers = {
             if(task.creator !== user.username) throw new Error('Not authorized to complete this task');
             if(task.completedOn) throw new Error('Task already completed');
 
-            await task.update({completedOn: new Date()}).exec();
+            const completedOn = new Date();
+            await task.update({completedOn}).exec();
+            task.completedOn = completedOn;
 
             await User
                 .findByIdAndUpdate(user._id, {$inc: {xp: task.xp, coins: task.coins}}, {runValidators: true})
                 .exec();
 
             return task;
+        },
+        deleteTask: async(_p, {id}, {user}) => {
+            if(!user) { throw new Error('Not logged in'); }
+
+            const task = await Task.findById(id).exec();
+            if(!task) throw new Error('Task not found');
+            if(task.creator !== user.username) throw new Error('Not authorized to delete this task');
+
+            await task.deleteOne();
+
+            return task;
+        },
+        deleteReward: async(_p, {id}, {user}) => {
+            if(!user) { throw new Error('Not logged in'); }
+
+            const reward = await Reward.findById(id).exec();
+            if(!reward) throw new Error('Reward not found');
+            if(reward.creator !== user.username) throw new Error('Not authorized to delete this reward');
+
+            await reward.deleteOne();
+
+            return reward;
         },
         purchaseReward: async(_p, args, {user}) => {
             if(!user) { throw new Error('Not logged in'); }

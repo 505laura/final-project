@@ -63,9 +63,11 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth,
     updateUser(username: String, email: String, password: String): User,
     addTask(title: String!, description: String!, coins: Int!, xp: Int!, daily: Boolean, negative: Boolean): Task,
+    deleteTask(id: String!): Task,
     addReward(title: String!, description: String!, cost: Int!): Reward,
-    completeTask(id: ID): Task,
-    purchaseReward(id: ID): Reward
+    deleteReward(id: String!): Reward,
+    completeTask(id: String!): Task,
+    purchaseReward(id: String!): Reward
     login(username: String, email: String, password: String!): Auth
   }
 `;

@@ -10,8 +10,6 @@ module.exports = {
         return jwt.sign({data: payload}, secret, {expiresIn: expiration});
     },
     authMiddleware({req}) {
-        // Log the request body
-        console.log(req.body);
         const tokenInput = req.body.token || req.query.token || req.headers.authorization;
         let token;
 
