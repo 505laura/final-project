@@ -1,14 +1,9 @@
 import React from 'react';
 import Auth from '../utils/auth';
-import {Link, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {config} from '../utils/config';
 
 function Nav() {
-  const location = useLocation();
-
-  // if (location.pathname === '/dashboard') {
-  //   return <div></div>;
-  // }
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (

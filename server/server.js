@@ -5,6 +5,7 @@ const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const db = require('./config/connection');
 const {typeDefs, resolvers} = require('./schemas');
+const path = require('path');
 
 const {authMiddleware} = require('./utils/auth');
 
@@ -13,6 +14,13 @@ const app = express();
 
 const gqlServer = new ApolloServer({typeDefs, resolvers, context: authMiddleware});
 let server;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
 const startServer = async(quiet) => {
     await gqlServer.start();

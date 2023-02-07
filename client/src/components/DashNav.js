@@ -5,17 +5,6 @@ import {config} from '../utils/config';
 import XPBar from './XPBar';
 
 function DashNav() {
-  const location = useLocation();
-
-  // if (location.pathname !== '/dashboard') {
-  //   return <div></div>;
-  // }
-
-  // if(!Auth.loggedIn()) {
-  //   // window.location.assign("/");
-  //   return;
-  // }
-
   function showNavigation() {
       return (
         <div className="my-auto flex">
