@@ -7,7 +7,7 @@ function ItemList(props) {
   return (
     <div
       style={{
-        width: props.width ?? '25%',
+        width: props.width ?? '50%',
         backgroundColor: '#FFDADA',
         margin: '5px',
         padding: '5px',
@@ -41,7 +41,7 @@ function BarList(props) {
   return (
     <div
       style={{
-        width: props.width ?? '25%',
+        width: props.width ?? '50%',
         backgroundColor: '#FFDADA',
         margin: '5px',
         padding: '5px',
@@ -77,7 +77,7 @@ const weekGoalItems = [
 
 function WeekGoals(props) {
   return (
-    <ItemList items={props.items} width={'45%'} title={'This weeks goals'} />
+    <ItemList items={props.items} width={'50%'} title={'This weeks goals'} />
   );
 }
 
@@ -109,15 +109,15 @@ const rewardItems = [
 ];
 
 function Stats(props) {
-  return <BarList items={props.items} width={'35%'} title={'???'} />;
+  return <BarList items={props.items} width={'50%'} title={'???'} />;
 }
 
 function All(props) {
   return (
     <div style={{display: 'flex', flexDirection: 'row'}}>
       <WeekGoals items={weekGoalItems} />
-      <Achievements items={habitItems} />
-      <Progress items={avoidItems} />
+      {/* <Achievements items={habitItems} />
+      <Progress items={avoidItems} /> */}
       <Stats items={rewardItems} />
     </div>
   );

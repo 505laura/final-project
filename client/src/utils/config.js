@@ -1,4 +1,4 @@
-const siteName = 'Site Name';
+const siteName = 'Little Life';
 
 export const config = {
     siteName,

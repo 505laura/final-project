@@ -34,7 +34,7 @@ function App() {
           <div className="min-h-screen flex flex-col w-screen bg-customWhite text-center z-0">
             <UserContext.Provider value={{xp, level, coins, setXP, setLevel, setCoins}}>
               <Nav />
-              <DashNav />
+              {/* <DashNav /> */}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />

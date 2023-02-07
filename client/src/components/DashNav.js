@@ -1,27 +1,42 @@
 import React from 'react';
-// import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 import {Link, useLocation} from 'react-router-dom';
 import {config} from '../utils/config';
+import XPBar from './XPBar';
 
 function DashNav() {
   const location = useLocation();
 
-  if (location.pathname !== '/dashboard') {
-    return <div></div>;
-  }
+  // if (location.pathname !== '/dashboard') {
+  //   return <div></div>;
+  // }
 
   // if(!Auth.loggedIn()) {
   //   // window.location.assign("/");
   //   return;
   // }
 
+  function showNavigation() {
+      return (
+        <div className="my-auto flex">
+        <div className="text-xl mx-1 z-10">
+          <Link to="/dashboard">Dashboard</Link>
+        </div>
+        <div className="text-xl mx-1 z-10">
+          <Link onClick={() => Auth.logout()} to="/">Logout</Link>
+        </div>
+      </div>
+      );
+  }
+
+
   return (
     <header className="flex-row px-1" style={{justifyContent: 'space-between'}}>
-      <h1>
+      <h1 className='text-4xl text-customGrey py-5 pl-20'>
         <Link to="/">{config.siteName}</Link>
       </h1>
-
-      <span style={{color: 'white'}} >UserIcon</span>
+      {showNavigation()}
+      {/* <span style={{color: 'white'}} >UserIcon</span> */}
     </header>
   );
 }

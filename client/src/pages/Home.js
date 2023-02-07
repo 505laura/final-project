@@ -3,6 +3,7 @@ import FlowerImg from "../assets/landingpageimg.png";
 import FlowerImgFlip from "../assets/landingpageimgflip.png";
 import SignupBtn from "../components/SignUpBtn";
 import SiteInfo from "../components/SiteInfo";
+import { COMPLETE_TASK } from "../utils/mutations";
 
 const Home = () => {
   return (
@@ -17,9 +18,9 @@ const Home = () => {
           <h1 className="text-6xl text-customGrey xl:pt-48 pt-20 font-semibold">Create the life you desire.</h1>
           <p className="text-2xl text-gray-700 pt-6 px-10">A cozy, incentive-based dashboard that will help you hold yourself accountable and motivate you to level up different aspects of your life.</p>
           <div className="flex flex-row justify-center flex-wrap">
-            <SiteInfo />
-            <SiteInfo />
-            <SiteInfo />
+            <SiteInfo phrase={'Complete tasks and level up'}/>
+            <SiteInfo phrase={'Plan and build your ideal life'}/>
+            <SiteInfo phrase={'Reward yourself for your daily habits'}/>
           </div>
           <div className="xl:pt-32 pt-20">
             <SignupBtn />

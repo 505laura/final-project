@@ -6,13 +6,16 @@ import {config} from '../utils/config';
 function Nav() {
   const location = useLocation();
 
-  if (location.pathname === '/dashboard') {
-    return <div></div>;
-  }
+  // if (location.pathname === '/dashboard') {
+  //   return <div></div>;
+  // }
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <div className="my-auto">
+        <div className="my-auto flex">
+        <div className="text-xl mx-1 z-10">
+          <Link to="/dashboard">Dashboard</Link>
+        </div>
         <div className="text-xl mx-1 z-10">
           <Link onClick={() => Auth.logout()} to="/">Logout</Link>
         </div>

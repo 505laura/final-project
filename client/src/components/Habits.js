@@ -390,8 +390,7 @@ class RewardList extends ItemList {
           margin: '5px',
           padding: '5px',
           borderRadius: '5%',
-          textAlign: 'center',
-          height: '100%',
+          textAlign: 'center'
         }}
       >
         <h1>{titles[this.props.itemKey]}</h1>
